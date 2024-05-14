@@ -1,4 +1,5 @@
 require('dotenv').config()
+const cors = require('cors')
 const express = require('express')
 const configureDB = require('./config/db')
 const {checkSchema}=require('express-validator')
@@ -14,6 +15,7 @@ const port = 3456
 configureDB()
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/api/search',checkSchema(userSearchValidation),userCntl.search)
 
